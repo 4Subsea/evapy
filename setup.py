@@ -20,5 +20,7 @@ setup(name='evapy',
           'Programming Language :: Python :: 2.7',
           'License :: OSI Approved :: MIT License'
       ],
-      install_requires=[],
+      install_requires=[
+          'numpy'
+      ],
       zip_safe=False)
