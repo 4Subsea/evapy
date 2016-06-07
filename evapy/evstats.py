@@ -19,7 +19,7 @@ def _argrelmax(x):
     return peaks
 
 
-def _argupcross(x, x_up=0.):
+def _argupcross(x, x_up):
     '''
     Find the cross ups of 1D time series data.
 
@@ -91,15 +91,31 @@ def argupcross(x, x_up=0.):
         return np.array([0])
 
 
-def argrelmax_decluster(x):
+def argrelmax_decluster(x, x_up=0.):
     '''
-    Calculate the declustered relative maxima of 1D data.
+    Find the relative maxima of 1D time series data.
+
+    Parameters
+    ----------
+    x : array-like
+        Time series data.
+    x_up : float, optional
+        Upcrossing value. Default is 0.
+
+    Returns
+    -------
+    peaks : array-like
+        Return the index of largest peaks between two upcrossing. If no peak or
+        upcrossing pair is found, the index of the largest value is returned.
     '''
-    zeroups = _argzeroup(x)
+    zeroups = _argupcross(x, x_up)
     peaks = _argrelmax(x)
     peaks_series = zeroups | peaks
-    
-    index = np.arange(len(x))[peaks_series]
-    
-    index_rel = argrelmax(x[peaks_series])
-    return index[index_rel]
+
+    peaks = np.flatnonzero(peaks_series)
+
+    if peaks.size:
+        peaks_rel = argrelmax(x[peaks])
+        return peaks[peaks_rel]
+    else:
+        return np.asarray([np.argmax(x)])
