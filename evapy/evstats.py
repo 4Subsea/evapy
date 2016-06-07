@@ -19,7 +19,7 @@ def _argrelmax(x):
     return peaks
 
 
-def _argcrossup(x, x_up=0.):
+def _argupcross(x, x_up=0.):
     '''
     Find the cross ups of 1D time series data.
 
