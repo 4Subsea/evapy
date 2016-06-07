@@ -46,6 +46,13 @@ class Test__argupcross(unittest.TestCase):
                              False, False])
         np.testing.assert_array_equal(calculated, expected)
 
+    def test_simple_find_w_other(self):
+        x = np.array([0., 1., 0., -1., -2., -1., 0., 1., 0.]) + 2.
+        calculated = evstats._argupcross(x, x_up=2.)
+        expected = np.array([True, False, False, False, False, False, True,
+                             False, False])
+        np.testing.assert_array_equal(calculated, expected)
+
     def test_simple_find_none(self):
         x = np.array([0., 1., 2., 3., 4., 5.])
         calculated = evstats._argupcross(x, x_up=0.)
