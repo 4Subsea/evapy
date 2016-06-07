@@ -13,17 +13,17 @@ def _argrelmax(x):
     Returns
     -------
     peaks : array-like
-        Return the index of all peaks.
+        Return the True values for all peaks.
     '''
     peaks = np.r_[False, x[1:] > x[:-1]] & np.r_[x[:-1] > x[1:], False]
     return peaks
 
 
-def _argzeroup(x, x_up=0.):
+def _argcrossup(x, x_up=0.):
     '''
     Calculate the zero up-crossing of 1D data.
     '''
-    zeroups = np.r_[x[1:] > 0., False] & np.r_[x < 0.]
+    zeroups = np.r_[x[1:] > x_up, False] & np.r_[x <= x_up]
     return zeroups
 
 
