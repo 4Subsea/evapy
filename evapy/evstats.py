@@ -83,8 +83,8 @@ def argupcross(x, x_up=0.):
         Return the index of all values just before an upcrossing. If no
         upcrossings are found, the index of the first value is returned.
     '''
-    zeroups_bool = _argzeroup(x)
-    zeroups = np.flatnonzero(zeroups)
+    zeroups_bool = _argupcross(x, x_up=x_up)
+    zeroups = np.flatnonzero(zeroups_bool)
     if zeroups.size:
         return zeroups
     else:
