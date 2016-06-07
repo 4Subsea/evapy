@@ -24,3 +24,30 @@ class Test__argrelmax(unittest.TestCase):
         calculated = evstats._argrelmax(x)
         expected = np.array([False, False, False, False, False, False])
         np.testing.assert_array_equal(calculated, expected)
+
+
+class Test__argcrossup(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_simple_find(self):
+        x = np.array([0., 1., -1., -2., -1., 1., 0.])
+        calculated = evstats._argcrossup(x, x_up=0.)
+        expected = np.array([False, False, False, False, True, False, False])
+        np.testing.assert_array_equal(calculated, expected)
+
+    def test_simple_find_w_zero(self):
+        x = np.array([0., 1., 0., -1., -2., -1., 0., 1., 0.])
+        calculated = evstats._argcrossup(x, x_up=0.)
+        expected = np.array([True, False, False, False, False, False, True,
+                             False, False])
+        np.testing.assert_array_equal(calculated, expected)
+
+    def test_simple_find_none(self):
+        x = np.array([0., 1., 2., 3., 4., 5.])
+        calculated = evstats._argcrossup(x)
+        expected = np.array([False, False, False, False, False, False])
+        np.testing.assert_array_equal(calculated, expected)
