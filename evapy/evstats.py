@@ -41,13 +41,29 @@ def _argupcross(x, x_up=0.):
 
 def argrelmax(x):
     '''
-    Calculate the relative maxima of 1D data.
+    Find the relative maxima of 1D time series data.
+
+    Parameters
+    ----------
+    x : array-like
+        Time series data.
+
+    Returns
+    -------
+    peaks : array-like
+        Return the index of all peaks. If no peak is found, the index of the
+        largest value is returned.
+
+    Notes
+    -----
+    Similar to scipy.signal.argrelmax but significantly faster.
     '''
-    peaks = _argrelmax(x)
+    peaks_bool = _argrelmax(x)
+    peaks = np.flatnonzero(peaks_bool)
     if peaks.size:
-        return np.flatnonzero(peaks)
+        return peaks
     else:
-        return np.asarray(np.argmax(x))
+        return np.asarray([np.argmax(x)])
 
 
 def argzeroup(x):
