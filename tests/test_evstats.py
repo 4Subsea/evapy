@@ -110,3 +110,29 @@ class Test_argupcross(unittest.TestCase):
         calculated = evstats.argupcross(x, x_up=0.)
         expected = np.array([0.])
         np.testing.assert_array_equal(calculated, expected)
+
+
+class Test_argrelmax_decluster(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_simple_find(self):
+        x = np.array([0., 1., 0., -1., 0., 2.])
+        calculated = evstats.argrelmax_decluster(x, x_up=0.)
+        expected = np.array([1])
+        np.testing.assert_array_equal(calculated, expected)
+
+    def test_simple_find_decluster(self):
+        x = np.array([0., 1., 2., 1., 2., 3., 2., 1., 0., 2.,-1.,1.])
+        calculated = evstats.argrelmax_decluster(x, x_up=0.)
+        expected = np.array([5, 9.])
+        np.testing.assert_array_equal(calculated, expected)
+
+    def test_simple_find_none(self):
+        x = np.array([0.1, 1., 2., 3., 4., 5.])
+        calculated = evstats.argrelmax_decluster(x)
+        expected = np.array([5])
+        np.testing.assert_array_equal(calculated, expected)
