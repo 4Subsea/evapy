@@ -66,13 +66,27 @@ def argrelmax(x):
         return np.asarray([np.argmax(x)])
 
 
-def argzeroup(x):
+def argupcross(x, x_up=0.):
     '''
-    Calculate the zero up-crossing of 1D data.
+    Find the upcrossing of 1D time series data.
+
+    Parameters
+    ----------
+    x : array-like
+        Time series data.
+    x_up : float, optional
+        Upcrossing value. Default is 0.
+
+    Returns
+    -------
+    zeroups : array-like
+        Return the index of all values just before an upcrossing. If no
+        upcrossings are found, the index of the first value is returned.
     '''
-    zeroups = _argzeroup(x)
+    zeroups_bool = _argzeroup(x)
+    zeroups = np.flatnonzero(zeroups)
     if zeroups.size:
-        return np.flatnonzero(zeroups)
+        return zeroups
     else:
         return np.array([0])
 
