@@ -7,7 +7,7 @@ def _argrelmax(x):
 
     Parameters
     ----------
-    od_pipe : array-like
+    x : array-like
         Time series data.
 
     Returns
@@ -21,7 +21,19 @@ def _argrelmax(x):
 
 def _argcrossup(x, x_up=0.):
     '''
-    Calculate the zero up-crossing of 1D data.
+    Find the cross ups of 1D time series data.
+
+    Parameters
+    ----------
+    x : array-like
+        Time series data.
+    x_up : float
+        Upcrossing value.
+
+    Returns
+    -------
+    zeroups : array-like
+        Return the True values for all upcrossings.
     '''
     zeroups = np.r_[x[1:] > x_up, False] & np.r_[x <= x_up]
     return zeroups
