@@ -21,6 +21,7 @@ import numpy as np
 
 #  Special constants
 _EULER = 0.577215664901532860606512090082402431042
+_ZETA3 = 1.202056903159594285399738161511449990765
 
 
 class rayleigh_gen(rv_continuous):
@@ -38,6 +39,7 @@ class rayleigh_gen(rv_continuous):
 
     Copy of scipy.stats.rayleigh. Included for convinience in the evapy
     package.
+
     """
     def _pdf(self, r):
         return r * np.exp(-0.5 * r**2)
@@ -93,13 +95,13 @@ class frechet_r_gen(rv_continuous):
         return c*x**(c-1)*exp(-x**c)
 
     def _logpdf(self, x, c):
-        return log(c) + (c-1)*log(x) - pow(x, c)
+        return log(c) + (c-1)*log(x) - x**c
 
     def _cdf(self, x, c):
-        return -special.expm1(-pow(x, c))
+        return -special.expm1(-x**c)
 
     def _ppf(self, q, c):
-        return pow(-special.log1p(-q), 1.0/c)
+        return (-special.log1p(-q))**(1.0/c)
 
     def _munp(self, n, c):
         return special.gamma(1.0+n*1.0/c)
