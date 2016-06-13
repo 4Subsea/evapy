@@ -159,3 +159,25 @@ class gumbel_r_gen(rv_continuous):
 gumbel = gumbel_r_gen(name='gumbel')
 gumbel_max = gumbel_r_gen(name='gumbel_max')
 
+class gen_exp_tail_gen(rv_continuous):
+    """
+    Generlized exponential tail distribution.
+    """
+    def _pdf(self, x, q, c):
+        return c*x**(c-1.)*np.exp(-x**c + np.log(q))
+    
+    def _logpdf(self, x, q, c):
+        return np.log(c) + (c-1)*np.log(x) - x**c + np.log(q)
+    
+    def _cdf(self, x, q, c):
+        return -special.expm1(-x**c + np.log(q))
+    
+    def _logcdf(self, x, q, c):
+        return special.log1p(-np.exp(-x**c + np.log(q)))
+    
+    def _ppf(self, f, q, c):
+        return (np.log(q) - special.log1p(-f))**(1./c)
+    
+    def _sf(self, x, q, c):
+        return np.exp(-x**c + np.log(q))
+    
