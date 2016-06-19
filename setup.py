@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='evapy',
-      version='0.1.0.dev0',
+      version='0.1.0.dev1',
       description='Extreme value analysis',
       author='4Subsea',
       author_email='ace@4subsea.com',
@@ -21,6 +21,7 @@ setup(name='evapy',
           'License :: OSI Approved :: MIT License'
       ],
       install_requires=[
-          'numpy'
+          'numpy',
+          'scipy'
       ],
       zip_safe=False)
