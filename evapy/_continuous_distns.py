@@ -2,9 +2,7 @@
 Notes
 -----
 
-The distributions will rely on the `scipy.stats` framework. This may
-imply that some functions can rely on private functions in the scipy
-package.
+The distributions will rely on the `scipy.stats` framework.
 
 Similar to scipy.stats._continous_distns.
 
@@ -16,6 +14,8 @@ from __future__ import division
 
 from scipy import special
 from scipy.stats import rv_continuous
+
+from numpy import (exp, log, sqrt, pi)
 
 import numpy as np
 
@@ -41,24 +41,24 @@ class rayleigh_gen(rv_continuous):
     package.
 
     """
-    def _pdf(self, r):
-        return r * np.exp(-0.5 * r**2)
+    def _pdf(self, x):
+        return r*exp(-0.5*x**2)
 
-    def _cdf(self, r):
-        return -special.expm1(-0.5 * r**2)
+    def _cdf(self, x):
+        return -special.expm1(-0.5*x**2)
 
-    def _ppf(self, q):
-        return np.sqrt(-2 * special.log1p(-q))
+    def _ppf(self, f):
+        return sqrt(-2*special.log1p(-f))
 
-    def _sf(self, r):
-        return np.exp(-0.5 * r**2)
+    def _sf(self, x):
+        return exp(-0.5*x**2)
 
-    def _isf(self, q):
-        return np.sqrt(-2 * log(q))
+    def _isf(self, s):
+        return sqrt(-2*log(s))
 
     def _stats(self):
         val = 4 - pi
-        return (np.sqrt(pi/2), val/2, 2*(pi-3)*sqrt(pi)/val**1.5,
+        return (sqrt(pi/2), val/2, 2*(pi-3)*sqrt(pi)/val**1.5,
                 6*pi/val-16/val**2)
 
     def _entropy(self):
@@ -100,8 +100,8 @@ class frechet_r_gen(rv_continuous):
     def _cdf(self, x, c):
         return -special.expm1(-x**c)
 
-    def _ppf(self, q, c):
-        return (-special.log1p(-q))**(1.0/c)
+    def _ppf(self, f, c):
+        return (-special.log1p(-f))**(1.0/c)
 
     def _munp(self, n, c):
         return special.gamma(1.0+n*1.0/c)
@@ -148,8 +148,8 @@ class gumbel_r_gen(rv_continuous):
     def _logcdf(self, x):
         return -exp(-x)
 
-    def _ppf(self, q):
-        return -log(-log(q))
+    def _ppf(self, f):
+        return -log(-log(f))
 
     def _stats(self):
         return _EULER, pi*pi/6.0, 12*sqrt(6)/pi**3 * _ZETA3, 12.0/5
@@ -159,25 +159,26 @@ class gumbel_r_gen(rv_continuous):
 gumbel = gumbel_r_gen(name='gumbel')
 gumbel_max = gumbel_r_gen(name='gumbel_max')
 
+
 class gen_exp_tail_gen(rv_continuous):
     """
     Generlized exponential tail distribution.
     """
-    def _pdf(self, x, q, c):
-        return c*x**(c-1.)*np.exp(-x**c + np.log(q))
-    
-    def _logpdf(self, x, q, c):
-        return np.log(c) + (c-1)*np.log(x) - x**c + np.log(q)
-    
-    def _cdf(self, x, q, c):
-        return -special.expm1(-x**c + np.log(q))
-    
-    def _logcdf(self, x, q, c):
-        return special.log1p(-np.exp(-x**c + np.log(q)))
-    
-    def _ppf(self, f, q, c):
+    def _pdf(self, x, c, q):
+        return c*x**(c-1.)*exp(-x**c + log(q))
+
+    def _logpdf(self, x, c, q):
+        return log(c) + (c-1)*log(x) - x**c + log(q)
+
+    def _cdf(self, x, c, q):
+        return -special.expm1(-x**c + log(q))
+
+    def _logcdf(self, x, c, q):
+        return special.log1p(-np.exp(-x**c + log(q)))
+
+    def _ppf(self, f, c, q):
         return (np.log(q) - special.log1p(-f))**(1./c)
-    
-    def _sf(self, x, q, c):
+
+    def _sf(self, x, c, q):
         return np.exp(-x**c + np.log(q))
-    
+genexpt = gen_exp_tail_gen(name='genexpt')
