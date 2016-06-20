@@ -2,27 +2,23 @@
 Extreme value analysis tools created by 4Subsea. 
 
 ## Features
+### Planned features for 0.1.0 release.
 
 -  Time series analysis
 
    -  zero-upcrossing
-   -  peak detections / declustering
-   -  other
+   -  peak detection / declustering
 
 - Peak distributions
 
     - Rayleigh
-    - truncated Rayleigh
     - Weibull 3p
-    - truncated Weibull 3p
-    - acer (Naess&Gaidai)
-    
+    - Generalized exponential tail
+
 - Maxima distribuions
 
     - Gumbel
-    - sub-asymptotic extreme value distribution (Naess et. al)
-    
-These are the planned features for 0.1.0 release.
+    - ACEER 1st order (Naess et. al)
 
 ## Getting Started
 
@@ -60,7 +56,6 @@ Download a zip of the code via GitHub. Then, type:
 See documentation (TBA).
 
 ## Need Help?
-
 
 TBA
 
