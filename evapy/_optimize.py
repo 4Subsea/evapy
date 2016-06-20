@@ -38,7 +38,7 @@ def _residual_error(self, theta, x, y_fun, **kwargs):
         raise ValueError("Not enough input arguments.")
 
     if not self._argcheck(*args) or scale <= 0:
-        return inf
+        return np.inf
 
     x = np.asarray((x-loc) / scale)
     x.sort()
