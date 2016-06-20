@@ -192,7 +192,7 @@ class gen_exp_tail_gen(rv_continuous):
             return log(1/(1 - cdf))
 
         return _residual_error(self, theta, x, y_fun)
-genexpt = gen_exp_tail_gen(name='genexpt', a=0.)
+genexptail = gen_exp_tail_gen(name='genexpt', a=0.)
 
 
 class acer_o1_gen(rv_continuous):
