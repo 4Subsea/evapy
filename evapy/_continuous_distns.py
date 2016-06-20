@@ -1,9 +1,5 @@
 '''
-Notes
------
-
 The distributions will rely on the `scipy.stats` framework.
-
 Similar to scipy.stats._continous_distns.
 
 Thanks to all SciPy developers for their great work!
@@ -20,8 +16,8 @@ from numpy import (exp, log, sqrt, pi, inf)
 
 import numpy as np
 
-
 from ._optimize import _residual_error
+
 
 #  Special constants
 _EULER = 0.577215664901532860606512090082402431042
@@ -220,34 +216,12 @@ class acer_o1_gen(rv_continuous):
 
     def _penalized_nnlf(self, theta, x):
         '''
-        Return special purspose lsq objective error function to minimize.
-        Method is overwritten to hook into scipy.stats optimization framework.
+        Method is overwritten to hook into scipy.stats optimization framework
+        with custom residual error function. ML estimator do not exist.
 
-            '''
-        try:
-            loc = theta[-2]
-            scale = theta[-1]
-            args = tuple(theta[:-2])
-        except IndexError:
-            raise ValueError("Not enough input arguments.")
+        '''
+        def y_fun(cdf):
+            return log(-1./log(cdf))
 
-        if not self._argcheck(*args) or scale <= 0:
-            return inf
-
-        x = np.asarray((x-loc) / scale)
-        x.sort()
-
-        if np.isneginf(self.a).all() and np.isinf(self.b).all():
-            Nbad = 0
-        else:
-            cond0 = (x <= self.a) | (self.b <= x)
-            Nbad = sum(cond0)
-            if Nbad > 0:
-                x = x[~cond0]
-
-        N = len(x)
-        f_ecdf = np.array([(i + 1 - 0.3)/(N + 0.4) for i in range(N)])
-        error = np.abs(log(-1./log(f_ecdf)) - 
-                       log(-1./log(self._cdf(x, *args))))**2.
-        return np.sum(error) + Nbad * 10000.
+        return _residual_error(self, theta, x, y_fun)
 acer_o1 = acer_o1_gen(name='acer_o1')

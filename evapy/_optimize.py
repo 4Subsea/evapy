@@ -55,9 +55,5 @@ def _residual_error(self, theta, x, y_fun, **kwargs):
 
 #  Refactor ecdf out into own code at some point.
     f_ecdf = np.array([(i + 1 - 0.3)/(N + 0.4) for i in range(N)])
-
     error = np.abs(y_fun(f_ecdf) - y_fun(self._cdf(x, *args)))**2.
-    
-    #error = np.abs(log(-1./log(f_ecdf)) - 
-    #               log(-1./log(self._cdf(x, *args))))**2.
     return np.sum(error) + Nbad * 10000.
