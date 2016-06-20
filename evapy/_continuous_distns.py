@@ -222,23 +222,20 @@ class acer_o1_gen(rv_continuous):
     """
     ACER (1st order) extreme value distribution.
     """
-    def _pdf(self, x, c, q):
-        return c*x**(c-1.)*exp(-x**c + log(q))
+    def _pdf(self, x, c, qn):
+        return c*q*x^(c-1)*exp(-exp(-x^c + log(qn))-x^c)
 
     def _logpdf(self, x, c, q):
-        return log(c) + (c-1)*log(x) - x**c + log(q)
+        return log(c*q*x^(c-1)) + (-exp(-x^c + log(qn))-x^c)
 
-    def _cdf(self, x, c, q):
-        return -special.expm1(-x**c + log(q))
+    def _cdf(self, x, c, qn):
+        return exp(-exp(-x^c + log(qn)))
 
-    def _logcdf(self, x, c, q):
-        return special.log1p(-np.exp(-x**c + log(q)))
+    def _logcdf(self, x, c, qn):
+        return -exp(-x^c + log(qn))
 
-    def _ppf(self, f, c, q):
-        return (np.log(q) - special.log1p(-f))**(1./c)
-
-    def _sf(self, x, c, q):
-        return np.exp(-x**c + np.log(q))
+    def _ppf(self, f, c, qn):
+        return (-(log(-(log(f))/qn)))^(1/c)
 
     def _penalized_nnlf(self, theta, x):
         '''
@@ -269,7 +266,7 @@ class acer_o1_gen(rv_continuous):
 
         N = len(x)
         f_ecdf = np.array([(i + 1 - 0.3)/(N + 0.4) for i in range(N)])
-        error = np.abs(log(1/(1 - f_ecdf)) - 
-                       log(1/(1 - self._cdf(x, *args))))**2.
+        error = np.abs(log(-1./log(f_ecdf)) - 
+                       log(-1./log(self._cdf(x, *args))))**2.
         return np.sum(error) + Nbad * 10000.
-genexpt = gen_exp_tail_gen(name='genexpt', a=0.)
+acer_o1 = acer_o1_gen(name='acer_o1')
