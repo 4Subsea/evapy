@@ -26,19 +26,20 @@ _ZETA3 = 1.202056903159594285399738161511449990765
 
 class rayleigh_gen(rv_continuous):
     """A Rayleigh continuous random variable.
-    
-    See scipy.stats.rayleigh for usage and documentation
+
+    %(before_notes)s
 
     Notes
     -----
     The probability density function for `rayleigh` is::
 
-        rayleigh.pdf(r) = r * exp(-r**2/2)
+        rayleigh.pdf(x) = r * exp(-x**2/2)
 
     for ``x >= 0``.
 
-    Copy of scipy.stats.rayleigh. Included for convinience in the evapy
-    package.
+    %(after_notes)s
+
+    %(example)s
 
     """
     def _pdf(self, x):
@@ -67,14 +68,14 @@ rayleigh = rayleigh_gen(a=0.0, name="rayleigh")
 
 
 class frechet_r_gen(rv_continuous):
-    """A Frechet right (or Weibull minimum) continuous random variable.
+    """
+    A Frechet right class continuous random variable.
 
     %(before_notes)s
 
     See Also
     --------
-    weibull_min : The same distribution as `frechet_r`.
-    frechet_l, weibull_max
+    weibull, weibull_min
 
     Notes
     -----
@@ -113,13 +114,14 @@ weibull_min = frechet_r_gen(a=0.0, name='weibull_min')
 
 
 class gumbel_r_gen(rv_continuous):
-    """A right-skewed Gumbel continuous random variable.
+    """
+    A right-skewed Gumbel continuous random variable.
 
     %(before_notes)s
 
     See Also
     --------
-    gumbel_l, gompertz, genextreme
+    gumbel, gumbel_max
 
     Notes
     -----
@@ -162,7 +164,29 @@ gumbel_max = gumbel_r_gen(name='gumbel_max')
 
 class gen_exp_tail_gen(rv_continuous):
     """
-    Generlized exponential tail distribution.
+    A generalized exponential tail continuous random variable.
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `gen_exp_tail` is::
+
+        gen_exp_tail.pdf(x, c, q) = c*x**(c-1.)*exp(-x**c + log(q))
+
+    The generelized exponential tail distribution is related to 
+    peak-over-threshold distributions. It assumes a exponentially decreasing
+    tail and is in the domain of attraction of type I extreme value 
+    distribution.
+
+    The MLE for this distribution do not exist. Thus, ``fit`` method is 
+    overwritten with a least-square procedure. It is also recommended to lock
+    the location parameter for more robust parameter estimates.
+
+    %(after_notes)s
+
+    %(example)s
+
     """
     def _pdf(self, x, c, q):
         return c*x**(c-1.)*exp(-x**c + log(q))
@@ -192,27 +216,57 @@ class gen_exp_tail_gen(rv_continuous):
             return log(1/(1 - cdf))
 
         return _residual_error(self, theta, x, y_fun)
-genexptail = gen_exp_tail_gen(name='genexpt', a=0.)
+genexptail = gen_exp_tail_gen(name='genexptail', a=0.)
 
 
 class acer_o1_gen(rv_continuous):
     """
-    ACER (1st order) extreme value distribution.
+    A generalized Gumbel-like continuous random variable.
+
+    %(before_notes)s
+
+    See Also
+    --------
+    gumbel, gumbel_max
+
+    Notes
+    -----
+    The probability density function for `acer_o1` is::
+
+        acer_o1.pdf(x, c, qn) = c*qn*x^(c-1)*exp(-exp(-x**c + log(qn))-x**c)
+
+    The generelized Gumbel-like distributions. It assumes a exponentially 
+    decreasing tail and will approach a type I (Gumbel) extreme value 
+    distribution. Note that for c=1 and qn=1 the distribution reduces to the
+    conventional Gumbel distribution.
+
+    The MLE for this distribution do not exist. Thus, ``fit`` method is 
+    overwritten with a least-square procedure. It is also recommended to lock
+    the location parameter for more robust parameter estimates.
+
+    %(after_notes)s
+
+    References
+    ----------
+    [1]. Naess et al.
+
+    %(example)s
+
     """
     def _pdf(self, x, c, qn):
-        return c*q*x^(c-1)*exp(-exp(-x^c + log(qn))-x^c)
+        return c*qn*x^(c-1)*exp(-exp(-x**c + log(qn))-x**c)
 
     def _logpdf(self, x, c, q):
-        return log(c*q*x^(c-1)) + (-exp(-x^c + log(qn))-x^c)
+        return log(c*q*x**(c-1)) + (-exp(-x**c + log(qn))-x**c)
 
     def _cdf(self, x, c, qn):
-        return exp(-exp(-x^c + log(qn)))
+        return exp(-exp(-x**c + log(qn)))
 
     def _logcdf(self, x, c, qn):
-        return -exp(-x^c + log(qn))
+        return -exp(-x**c + log(qn))
 
     def _ppf(self, f, c, qn):
-        return (-(log(-(log(f))/qn)))^(1/c)
+        return (-(log(-(log(f))/qn)))**(1/c)
 
     def _penalized_nnlf(self, theta, x):
         '''
