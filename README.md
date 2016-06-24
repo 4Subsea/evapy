@@ -18,9 +18,19 @@ Extreme value analysis tools created by 4Subsea.
 - Maxima distribuions
 
     - Gumbel
-    - ACEER 1st order (Naess et. al)
+    - ACER 1st order (Naess et. al)
 
 ## Getting Started
+
+### Minimum Requirements
+
+-  Python 2.7. (Python 3 support planned.)
+-  See setup.py for dependencies
+
+We would also strongly recommend to install a scientific Python distro, such
+as [Anaconda]
+
+[Anaconda]: https://www.continuum.io/why-anaconda
 
 ### Download
 
