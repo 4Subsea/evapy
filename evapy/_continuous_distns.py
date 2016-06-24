@@ -33,7 +33,7 @@ class rayleigh_gen(rv_continuous):
     -----
     The probability density function for `rayleigh` is::
 
-        rayleigh.pdf(x) = r * exp(-x**2/2)
+        rayleigh.pdf(x) = x * exp(-x**2/2)
 
     for ``x >= 0``.
 
@@ -43,7 +43,7 @@ class rayleigh_gen(rv_continuous):
 
     """
     def _pdf(self, x):
-        return r*exp(-0.5*x**2)
+        return x*exp(-0.5*x**2)
 
     def _cdf(self, x):
         return -special.expm1(-0.5*x**2)
