@@ -127,3 +127,31 @@ class Test_gen_exp_tail_gen(unittest.TestCase):
         calculated = dist.genexptail.cdf(2.5, 2., 1., loc=0.5, scale=2.)
         expected = self.dist.cdf(2.5, 2., 1., loc=0.5, scale=2.)
         self.assertAlmostEqual(calculated, expected, places=4)
+
+
+class Test_acer_o1_gen(unittest.TestCase):
+    def setUp(self):
+        self.dist = dist._distns.acer_o1_gen()
+
+    def tearDown(self):
+        pass
+
+    def test_cdf(self):
+        calculated = self.dist.cdf(3., 1., 1., loc=1., scale=2.)
+        expected = np.exp(-np.exp(-1.))
+        self.assertAlmostEqual(calculated, expected, places=4)
+
+    def test_pdf(self):
+        calculated = self.dist.pdf(3., 1., 1., loc=1., scale=2.)
+        expected = np.exp(-1. - np.exp(-1.))/2.
+        self.assertAlmostEqual(calculated, expected, places=4)
+
+    def test_ppf(self):
+        calculated = self.dist.ppf(0.5, 1., 1., loc=1., scale=2.)
+        expected = 1. - 2.*np.log(np.log(2))
+        self.assertAlmostEqual(calculated, expected, places=4)
+
+    def test_instance_acer_o1(self):
+        calculated = dist.acer_o1.cdf(2.5, 1., 1., loc=0.5, scale=2.)
+        expected = self.dist.cdf(2.5, 1., 1., loc=0.5, scale=2.)
+        self.assertAlmostEqual(calculated, expected, places=4)
