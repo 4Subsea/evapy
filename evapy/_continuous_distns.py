@@ -254,7 +254,7 @@ class acer_o1_gen(rv_continuous):
 
     """
     def _pdf(self, x, c, qn):
-        return c*qn*x^(c-1)*exp(-exp(-x**c + log(qn))-x**c)
+        return c*qn*x**(c-1)*exp(-exp(-x**c + log(qn))-x**c)
 
     def _logpdf(self, x, c, q):
         return log(c*q*x**(c-1)) + (-exp(-x**c + log(qn))-x**c)
