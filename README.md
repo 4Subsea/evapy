@@ -28,7 +28,7 @@ Extreme value analysis tools created by 4Subsea.
 -  See setup.py for dependencies
 
 We would also strongly recommend to install a scientific Python distro, such
-as [Anaconda]
+as [Anaconda].
 
 [Anaconda]: https://www.continuum.io/why-anaconda
 
