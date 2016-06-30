@@ -54,12 +54,6 @@ Download a zip of the code via GitHub. Then, type:
     pip install .
 
 
-### Minimum Requirements
-
-
--  Python 2.7. (Python 3 support planned.)
--  See setup.py for dependencies
-
 ## Usage
 
 Usage examples are provided as Jupyter notebooks. See:
