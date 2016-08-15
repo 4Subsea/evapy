@@ -1,10 +1,32 @@
-.. evapy documentation master file, created by
-   sphinx-quickstart on Sat Jul 02 14:36:14 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+evapy
+=====
 
-Welcome to evapy's documentation!
-=================================
+``evapy`` - extreme value analysis in Python, is a set of statistical tools
+for analysis of discrete and time series data.
+
+Features
+********
+- Time series analysis
+- Peak distributions
+- Maxima distribuions
+
+Getting started
+***************
+
+Minimum Requirements
+^^^^^^^^^^^^^^^^^^^^
+
+- Python 2.7. (Python 3 support planned.)
+
+We would also strongly recommend to install a scientific Python distribution,
+such as [Anaconda] along with ``evapy``.
+
+[Anaconda]: https://www.continuum.io/why-anaconda
+
+Install with ``pip``
+^^^^^^^^^^^^^^^^^^^^
+
+TBA
 
 Contents:
 
