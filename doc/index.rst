@@ -33,6 +33,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   ts_anal
+   distributions
+   nb_examples
 
 
 Indices and tables
