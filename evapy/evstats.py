@@ -109,7 +109,7 @@ def argrelmax_decluster(x, x_up=0.):
         upcrossing pair is found, the index of the largest value is returned.
     '''
     zeroups = _argupcross(x, x_up)
-    peaks = _argrelmax(x)
+    peaks = _argrelmax(x) & np.array(x > x_up)
     peaks_series = zeroups | peaks
 
     peaks = np.flatnonzero(peaks_series)
