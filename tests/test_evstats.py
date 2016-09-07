@@ -139,7 +139,7 @@ class Test_argrelmax_decluster(unittest.TestCase):
 
     def test_find_decluster_below_upcross(self):
         x = np.array([0., 1., 2., 1., 2., 3., 2., 1., 0.,-1.,-2., -1, -2 , -1,
-                      0., 1, 0., -1.])
+                      0., 1, 0., -1.,-2., -1., 0., 1.])
         calculated = evstats.argrelmax_decluster(x, x_up=0.)
         expected = np.array([5, 15.])
         np.testing.assert_array_equal(calculated, expected)
