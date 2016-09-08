@@ -32,6 +32,7 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    ts_anal
    distributions

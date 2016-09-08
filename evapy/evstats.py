@@ -93,7 +93,7 @@ def argupcross(x, x_up=0.):
 
 def argrelmax_decluster(x, x_up=0.):
     '''
-    Find the relative maxima of 1D time series data.
+    Find the declustred relative maxima of 1D time series data.
 
     Parameters
     ----------
