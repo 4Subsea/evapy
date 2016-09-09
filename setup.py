@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='evapy',
-      version='0.1.0b0',
+      version='0.1.0',
       description='Extreme value analysis',
       author='4Subsea',
       author_email='ace@4subsea.com',
