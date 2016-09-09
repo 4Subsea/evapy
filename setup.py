@@ -13,7 +13,7 @@ setup(name='evapy',
           'evapy'
       ],
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Other Audience',
           'Topic :: Scientific/Engineering',
           'Programming Language :: Python :: 2',
