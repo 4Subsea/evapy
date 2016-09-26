@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='evapy',
-      version='0.1.1',
+      version='0.1.2',
       license='MIT',
       description='Extreme value analysis of time series',
       keywords='extreme value statistics',
