@@ -65,7 +65,7 @@ Download a zip of the code via GitHub. Extract and type:
 
 Usage examples are provided as Jupyter notebooks in the documentation.
 
-## Documentation?
+## Documentation
 
 TBA
 
