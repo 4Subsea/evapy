@@ -19,6 +19,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+from datetime import date
 
 # -- General configuration ------------------------------------------------
 
@@ -32,11 +33,13 @@
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.autosummary',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
+    'sphinx.ext.mathjax'
     #'sphinx.ext.githubpages',
 ]
 
@@ -70,7 +73,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'evapy'
-copyright = u'2016, 4Subsea'
+copyright = u'{}, 4Subsea'.format(date.today().year)
 author = u'4Subsea'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -101,7 +104,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.

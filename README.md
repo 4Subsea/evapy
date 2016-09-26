@@ -63,9 +63,7 @@ Download a zip of the code via GitHub. Extract and type:
 
 ## Usage
 
-Usage examples are provided as Jupyter notebooks. See:
-
-    ./jupyter notekook examples/
+Usage examples are provided as Jupyter notebooks in the documentation.
 
 ## Documentation?
 
