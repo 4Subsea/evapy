@@ -2,16 +2,17 @@ from setuptools import setup
 
 
 setup(name='evapy',
-      version='0.1.0',
-      description='Extreme value analysis',
+      version='0.1.1',
+      license='MIT',
+      description='Extreme value analysis of time series',
+      keywords='extreme value statistics',
+      url='https://github.com/4Subsea/evapy',
       author='4Subsea',
       author_email='ace@4subsea.com',
-      url='',
-      keywords='extreme value statistics',
-      license='MIT',
       packages=[
           'evapy'
       ],
+      include_pacakge_data=True,
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Other Audience',
