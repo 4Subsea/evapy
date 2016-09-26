@@ -1,8 +1,7 @@
 # evapy
-Extreme value analysis tools created by 4Subsea. 
+Extreme value analysis of time series - open source tools by 4Subsea. 
 
-## Features
-### Planned features for 0.1.0 release.
+## Features - v0.1.x
 
 -  Time series analysis
 
@@ -20,14 +19,22 @@ Extreme value analysis tools created by 4Subsea.
     - Gumbel
     - ACER 1st order (Naess et. al)
 
+### Planned for v.0.2.x
+
+- Peak distributions
+
+    - Truncated Rayleigh
+    - Truncated Weilbull 3p
+
+- Other improvments and fixes.
+
 ## Getting Started
 
 ### Minimum Requirements
 
 -  Python 2.7. (Python 3 support planned.)
--  See setup.py for dependencies
 
-We would also strongly recommend to install a scientific Python distro, such
+We strongly recommend to install a scientific Python distro, such
 as [Anaconda].
 
 [Anaconda]: https://www.continuum.io/why-anaconda
@@ -48,7 +55,7 @@ To get the source code via git just type:
 
 #### Option 3: Source Zip
 
-Download a zip of the code via GitHub. Then, type:
+Download a zip of the code via GitHub. Extract and type:
 
     cd ./evapy
     pip install .
@@ -60,7 +67,7 @@ Usage examples are provided as Jupyter notebooks. See:
 
     ./jupyter notekook examples/
 
-## Need Help?
+## Documentation?
 
 TBA
 
