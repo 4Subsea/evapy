@@ -15,7 +15,7 @@ def _argrelmax(x):
     peaks : array-like
         Return the True values for all peaks.
     '''
-    peaks = np.r_[False, x[1:] > x[:-1]] & np.r_[x[:-1] > x[1:], False]
+    peaks = np.r_[False, x[1:] > x[:-1]] & np.r_[x[:-1] >= x[1:], False]
     return peaks
 
 
