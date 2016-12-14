@@ -67,6 +67,55 @@ class rayleigh_gen(rv_continuous):
 rayleigh = rayleigh_gen(a=0.0, name="rayleigh")
 
 
+class truncrayleigh_gen(rv_continuous):
+    """A left turncated Rayleigh continuous random variable.
+
+    %(before_notes)s
+
+    Notes
+    -----
+    The probability density function for `rayleigh` is::
+
+        rayleigh.pdf(x) = x * exp(-x**2/2)
+
+    for ``x >= 0``.
+
+    %(after_notes)s
+
+    %(example)s
+
+    """
+#    def _pdf(self, x, a):
+#        return x*exp(-0.5*x**2)/(1 - self._basecdf(x))
+
+    def _argcheck(self, a):
+        self.a = a
+        cond = super(truncrayleigh_gen, self)._argcheck(a)
+        return cond
+
+    def _cdf(self, x, a):
+        return -special.expm1(-0.5*(x**2 - a**2))
+
+
+#    def _ppf(self, f):
+#        return sqrt(-2*special.log1p(-f))
+
+#    def _sf(self, x):
+#        return exp(-0.5*x**2)
+
+#    def _isf(self, s):
+#        return sqrt(-2*log(s))
+
+#    def _stats(self):
+#        val = 4 - pi
+#        return (sqrt(pi/2), val/2, 2*(pi-3)*sqrt(pi)/val**1.5,
+#                6*pi/val-16/val**2)
+
+#    def _entropy(self):
+#        return _EULER/2.0 + 1 - 0.5*log(2)
+truncrayleigh = truncrayleigh_gen(a=0.0, name="truncrayleigh")
+
+
 class frechet_r_gen(rv_continuous):
     """
     A Frechet right class continuous random variable.
