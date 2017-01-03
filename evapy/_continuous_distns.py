@@ -85,9 +85,6 @@ class truncrayleigh_gen(rv_continuous):
     %(example)s
 
     """
-#    def _pdf(self, x, a):
-#        return x*exp(-0.5*x**2)/(1 - self._basecdf(x))
-
     def _argcheck(self, a):
         self.a = a
         cond = super(truncrayleigh_gen, self)._argcheck(a)
@@ -96,6 +93,11 @@ class truncrayleigh_gen(rv_continuous):
     def _cdf(self, x, a):
         return -special.expm1(-0.5*(x**2 - a**2))
 
+    def _pdf(self, x, a):
+        return x*exp(-0.5*(x**2 - a**2))
+
+    def cdf(self, x, *args, **kwargs):
+        return super(truncrayleigh_gen, self).cdf(x, *args, **kwargs)
 
 #    def _ppf(self, f):
 #        return sqrt(-2*special.log1p(-f))
