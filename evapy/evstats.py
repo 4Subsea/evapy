@@ -108,14 +108,14 @@ def argrelmax_decluster(x, x_up=0.):
         Return the index of largest peaks between two upcrossing. If no peak or
         upcrossing pair is found, the index of the largest value is returned.
     '''
-    zeroups = _argupcross(x, x_up)
-    peaks = _argrelmax(x) & np.array(x > x_up)
-    peaks_series = zeroups | peaks
+    zeroups = argupcross(x, x_up)
+    x_sub = np.split(x, zeroups)
 
-    peaks = np.flatnonzero(peaks_series)
+    x_len = np.cumsum([len(x_i) for x_i in x_sub])
+    peaks = np.asarray(
+        [x_i_len + np.argmax(x_j) for x_i_len, x_j in zip(x_len, x_sub[1:-1])])
 
     if peaks.size:
-        peaks_rel = argrelmax(x[peaks])
-        return peaks[peaks_rel]
+        return peaks
     else:
-        return np.asarray([np.argmax(x)])
+        return np.asarray([np.max([np.argmax(x), x_up])])
