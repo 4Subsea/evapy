@@ -1,8 +1,6 @@
 import unittest
-from mock import Mock, patch
 
 import numpy as np
-
 
 import evapy.distributions as dist
 

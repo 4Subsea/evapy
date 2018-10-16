@@ -1,5 +1,4 @@
 import unittest
-from mock import Mock, patch
 
 import numpy as np
 
@@ -161,4 +160,3 @@ class Test_argrelmax_decluster(unittest.TestCase):
         calculated = evstats.argrelmax_decluster(x, x_up=0.)
         expected = np.array([5, 15.])
         np.testing.assert_array_equal(calculated, expected)
-
