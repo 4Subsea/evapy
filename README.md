@@ -1,7 +1,7 @@
 # evapy
 Extreme value analysis of time series - open source tools by 4Subsea. 
 
-## Features - v0.1.x
+## Features - v0.2.x
 
 -  Time series analysis
 
@@ -19,7 +19,7 @@ Extreme value analysis of time series - open source tools by 4Subsea.
     - Gumbel
     - ACER 1st order (Naess et. al)
 
-### Planned for v.0.2.x
+### Planned for v.0.3.x
 
 - Peak distributions
 
@@ -32,12 +32,7 @@ Extreme value analysis of time series - open source tools by 4Subsea.
 
 ### Minimum Requirements
 
--  Python 2.7. (Python 3 support planned.)
-
-We strongly recommend to install a scientific Python distro, such
-as [Anaconda].
-
-[Anaconda]: https://www.continuum.io/why-anaconda
+-  Python >= 3.5
 
 ### Download
 
