@@ -16,12 +16,7 @@ Getting started
 Minimum Requirements
 ^^^^^^^^^^^^^^^^^^^^
 
-- Python 2.7. (Python 3 support planned.)
-
-We would also strongly recommend to install a scientific Python distribution,
-such as `Anaconda`_ along with ``evapy``.
-
-.. _Anaconda: https://www.continuum.io/why-anaconda
+- Python >= 3.5
 
 Install with ``pip``
 ^^^^^^^^^^^^^^^^^^^^
