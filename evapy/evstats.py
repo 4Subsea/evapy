@@ -110,10 +110,8 @@ def argrelmax_decluster(x, x_up=0.):
     '''
     zeroups = argupcross(x, x_up)
     x_sub = np.split(x, zeroups)
-
-    x_len = np.cumsum([len(x_i) for x_i in x_sub])
     peaks = np.asarray(
-        [x_i_len + np.argmax(x_j) for x_i_len, x_j in zip(x_len, x_sub[1:-1])])
+        [x_len + np.argmax(x) for x_len, x in zip(zeroups, x_sub[1:-1])])
 
     if peaks.size:
         return peaks
