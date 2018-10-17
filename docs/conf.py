@@ -74,7 +74,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'sensor_4s'
+project = u'evapy'
 copyright = u'{}, 4Subsea'.format(datetime.datetime.now().year)
 author = u'4Subsea'
 
