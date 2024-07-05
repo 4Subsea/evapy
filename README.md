@@ -1,4 +1,4 @@
-# evapy
+# evapy_4s
 Extreme value analysis of time series - open source tools by 4Subsea. 
 
 ## Features - v0.2.x
