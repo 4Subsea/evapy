@@ -1,4 +1,4 @@
 Distributions
 =============
 
-.. module:: evapy.distributions
+.. module:: evapy_4s.distributions
