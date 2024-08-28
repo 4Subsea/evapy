@@ -1,5 +1,5 @@
 evapy_4s
-=====
+========
 
 ``evapy_4s`` - extreme value analysis in Python, is a set of statistical tools
 for analysis of discrete and time series data.
